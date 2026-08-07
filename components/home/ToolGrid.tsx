@@ -5,7 +5,9 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { CATEGORIES } from "@/lib/calculators/categories";
 
 export function ToolCard({ tool }: { tool: CalculatorConfig }) {
-  const Icon = LucideIcons[tool.icon] || LucideIcons.Calculator;
+  const Icon =
+  LucideIcons[tool.icon as keyof typeof LucideIcons] ??
+  LucideIcons.Calculator;
   const categoryInfo = CATEGORIES.find(c => c.id === tool.category);
   
   return (
