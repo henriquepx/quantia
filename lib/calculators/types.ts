@@ -1,3 +1,5 @@
+import type { IconName } from "@/lib/icons";
+
 export interface CalculatorField {
   id: string;
   label: string;
@@ -30,7 +32,7 @@ export interface CalculatorConfig {
   title: string;
   description: string;
   category: CalculatorCategory;
-  icon: string; // lucide icon name
+  icon: IconName; // lucide icon name
   fields: CalculatorField[];
   calculate: (inputs: Record<string, any>) => CalculatorResult[];
   formula?: string; // LaTeX-style or plain text

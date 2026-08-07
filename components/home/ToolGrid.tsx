@@ -1,13 +1,12 @@
 import Link from "next/link";
-import * as LucideIcons from "lucide-react";
+import { SearchX } from "lucide-react";
+import { ICONS } from "@/lib/icons";
 import { CalculatorConfig } from "@/lib/calculators/types";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CATEGORIES } from "@/lib/calculators/categories";
 
 export function ToolCard({ tool }: { tool: CalculatorConfig }) {
-  const Icon =
-  LucideIcons[tool.icon as keyof typeof LucideIcons] ??
-  LucideIcons.Calculator;
+  const Icon = ICONS[tool.icon];
   const categoryInfo = CATEGORIES.find(c => c.id === tool.category);
   
   return (
@@ -36,7 +35,7 @@ export function ToolGrid({ tools }: { tools: CalculatorConfig[] }) {
   if (tools.length === 0) {
     return (
       <div className="text-center py-24 text-muted-foreground">
-        <LucideIcons.SearchX className="mx-auto h-12 w-12 opacity-20 mb-4" />
+        <SearchX className="mx-auto h-12 w-12 opacity-20 mb-4" />
         <p>No calculators found matching your search.</p>
       </div>
     );

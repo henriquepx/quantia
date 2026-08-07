@@ -1,20 +1,22 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Search, Calculator } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ToolGrid } from "@/components/home/ToolGrid";
 import { CATEGORIES } from "@/lib/calculators/categories";
 import { allCalculators } from "@/lib/calculators/registry";
 
-export default function HomePage() {
+interface HomePageProps {
+  initialCategory: string;
+}
+
+export default function HomePage({
+  initialCategory,
+}: HomePageProps) {
   const [search, setSearch] = useState("");
-  const searchParams = useSearchParams();
-const router = useRouter();
-
-const initialCategory = searchParams.get("category") || "all";
-
+  const router = useRouter();
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   
   const handleCategoryChange = (category: string) => {
