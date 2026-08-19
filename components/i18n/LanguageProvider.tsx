@@ -28,6 +28,7 @@ const translations = {
     searchLanguage: "PT",
   },
   en: {
+    madeWith: "Made with",
     calculators: "Calculators",
     allTools: "All Tools",
     searchPlaceholder: "Search for compound interest, mortgage, net salary...",
