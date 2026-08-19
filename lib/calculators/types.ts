@@ -56,4 +56,7 @@ export type CalculatorCategory =
   | 'salary' 
   | 'real-estate' 
   | 'business' 
-  | 'general';
+  | 'general'
+  | 'mathematics'
+  | 'statistics'
+  | 'geometry';

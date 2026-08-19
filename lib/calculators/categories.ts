@@ -17,4 +17,7 @@ export const CATEGORIES: CategoryInfo[] = [
   { id: 'real-estate', label: 'Real Estate', icon: 'Home', description: 'Rent vs buy, rental yield, and appreciation.' },
   { id: 'business', label: 'Business', icon: 'Building2', description: 'Break-even, margins, markup, and cash flow.' },
   { id: 'general', label: 'General', icon: 'Calculator', description: 'Percentages, dates, currencies, and budgets.' },
+  { id: 'mathematics', label: 'Mathematics', icon: 'Calculator', description: 'Equations, progressions, probability, percentages, and number theory.' },
+  { id: 'statistics', label: 'Statistics', icon: 'PieChart', description: 'Averages, dispersion, correlation, percentiles, and data analysis.' },
+  { id: 'geometry', label: 'Geometry', icon: 'Scale', description: 'Areas, volumes, angles, distances, and geometric formulas.' },
 ];

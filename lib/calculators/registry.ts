@@ -8,6 +8,9 @@ import { salaryCalculators } from './salary';
 import { realEstateCalculators } from './real-estate';
 import { businessCalculators } from './business';
 import { generalCalculators } from './general';
+import { mathematicsCalculators } from './mathematics';
+import { statisticsCalculators } from './statistics';
+import { geometryCalculators } from './geometry';
 
 export const allCalculators: CalculatorConfig[] = [
   ...investmentsCalculators,
@@ -19,6 +22,9 @@ export const allCalculators: CalculatorConfig[] = [
   ...realEstateCalculators,
   ...businessCalculators,
   ...generalCalculators,
+  ...mathematicsCalculators,
+  ...statisticsCalculators,
+  ...geometryCalculators,
 ];
 
 export function getCalculatorBySlug(slug: string): CalculatorConfig | undefined {

@@ -68,4 +68,29 @@ export const retirementCalculators: CalculatorConfig[] = [
     },
     explanation: 'The FIRE number is calculated by dividing your annual expenses by your safe withdrawal rate. A 4% rate means you need 25x your annual expenses.',
   }
+  ,{
+    id: 'financial-independence', slug: 'financial-independence', title: 'Financial Independence Planner', description: 'Estimate when your investments can cover your lifestyle without active income.', category: 'retirement', icon: 'Flame',
+    fields: [
+      { id: 'currentAge', label: 'Current Age', type: 'number', defaultValue: 30 },
+      { id: 'currentPortfolio', label: 'Current Portfolio (R$)', type: 'currency', defaultValue: 50000 },
+      { id: 'monthlyExpenses', label: 'Monthly Expenses (R$)', type: 'currency', defaultValue: 5000 },
+      { id: 'monthlyContribution', label: 'Monthly Investment (R$)', type: 'currency', defaultValue: 2000 },
+      { id: 'realReturn', label: 'Expected Real Return (% a.a.)', type: 'percent', defaultValue: 5 },
+      { id: 'withdrawalRate', label: 'Safe Withdrawal Rate (%)', type: 'percent', defaultValue: 4 },
+    ],
+    calculate: (inputs) => {
+      const age=Math.max(0,Number(inputs.currentAge)||0), portfolio=Math.max(0,Number(inputs.currentPortfolio)||0), expenses=Math.max(0,Number(inputs.monthlyExpenses)||0), contribution=Math.max(0,Number(inputs.monthlyContribution)||0), annualRate=Math.max(0,Number(inputs.realReturn)||0)/100, withdrawal=Math.max(0.1,Number(inputs.withdrawalRate)||4)/100;
+      const target=expenses*12/withdrawal, monthlyRate=Math.pow(1+annualRate,1/12)-1; let balance=portfolio, months=0; const maxMonths=120*12;
+      while(balance<target && months<maxMonths){ balance=balance*(1+monthlyRate)+contribution; months++; if(monthlyRate===0 && contribution===0) break; }
+      const reachable=balance>=target, years=reachable?months/12:120, passiveMonthly=target*withdrawal/12;
+      return [
+        {label:'Financial Independence Target',value:target,type:'currency',highlight:true},
+        {label:'Estimated Time',value:years,type:'number'},
+        {label:'Estimated Age',value:age+years,type:'number'},
+        {label:'Monthly Passive Income',value:passiveMonthly,type:'currency'},
+      ];
+    },
+    formula: 'FIRE target = annual expenses / withdrawal rate',
+    explanation: 'Projects your portfolio month by month using your current investments, monthly contributions and expected real return. Independence is reached when the portfolio can support your annual expenses at the selected safe withdrawal rate.',
+  }
 ];
