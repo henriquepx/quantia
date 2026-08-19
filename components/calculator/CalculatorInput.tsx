@@ -2,6 +2,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CalculatorField } from "@/lib/calculators/types";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 interface Props {
   field: CalculatorField;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export function CalculatorInput({ field, value, onChange }: Props) {
+  const { language } = useLanguage();
   
   if (field.type === 'select' && field.options) {
     return (
@@ -17,7 +19,7 @@ export function CalculatorInput({ field, value, onChange }: Props) {
         <Label htmlFor={field.id}>{field.label}</Label>
         <Select value={value?.toString()} onValueChange={onChange}>
           <SelectTrigger id={field.id} className="w-full bg-background">
-            <SelectValue placeholder={field.placeholder || "Select..."} />
+            <SelectValue placeholder={field.placeholder || (language === "pt" ? "Selecione..." : "Select...")} />
           </SelectTrigger>
           <SelectContent>
             {field.options.map(opt => (
@@ -30,7 +32,6 @@ export function CalculatorInput({ field, value, onChange }: Props) {
     );
   }
 
-  // Common number-based input (number, currency, percent)
   const isCurrency = field.type === 'currency';
   const isPercent = field.type === 'percent';
   

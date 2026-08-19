@@ -1,23 +1,23 @@
-export function formatCurrency(value: number | string): string {
+export function formatCurrency(value: number | string, locale = 'pt-BR'): string {
   if (value === undefined || value === null || isNaN(Number(value))) return '-';
-  return new Intl.NumberFormat('pt-BR', {
+  return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'BRL',
   }).format(Number(value));
 }
 
-export function formatPercent(value: number | string, decimals = 2): string {
+export function formatPercent(value: number | string, decimals = 2, locale = 'pt-BR'): string {
   if (value === undefined || value === null || isNaN(Number(value))) return '-';
-  return new Intl.NumberFormat('pt-BR', {
+  return new Intl.NumberFormat(locale, {
     style: 'percent',
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   }).format(Number(value) / 100);
 }
 
-export function formatNumber(value: number | string, decimals = 2): string {
+export function formatNumber(value: number | string, decimals = 2, locale = 'pt-BR'): string {
   if (value === undefined || value === null || isNaN(Number(value))) return '-';
-  return new Intl.NumberFormat('pt-BR', {
+  return new Intl.NumberFormat(locale, {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   }).format(Number(value));
@@ -25,7 +25,6 @@ export function formatNumber(value: number | string, decimals = 2): string {
 
 export function parseNumber(value: string): number {
   if (!value) return 0;
-  // Handle Brazilian format if present
   let cleanValue = value;
   if (typeof value === 'string') {
     if (value.includes(',') && value.includes('.')) {

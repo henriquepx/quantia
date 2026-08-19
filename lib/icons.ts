@@ -11,8 +11,6 @@ import {
   TrendingUp,
   Home,
   DollarSign,
-
-  // Novos
   Tags,
   Palmtree,
   Banknote,

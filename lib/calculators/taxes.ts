@@ -65,7 +65,7 @@ export const taxesCalculators: CalculatorConfig[] = [
       
       let iof = 0;
       if (inputs.type === 'exchange') {
-        iof = amount * 0.0538; // standard international card IOF recently changing, using 5.38%
+        iof = amount * 0.0538; 
       } else {
         const fixed = amount * 0.0038;
         const daily = amount * Math.min(days * 0.000082, 0.015);
@@ -100,7 +100,6 @@ export const taxesCalculators: CalculatorConfig[] = [
       if (inputs.type === 'stocks') taxRate = 0.20;
       else if (inputs.type === 'stocks-normal') taxRate = 0.15;
       else {
-        // basic real estate
         if (profit <= 5000000) taxRate = 0.15;
         else if (profit <= 10000000) taxRate = 0.175;
         else if (profit <= 30000000) taxRate = 0.20;
@@ -132,9 +131,8 @@ export const taxesCalculators: CalculatorConfig[] = [
       const salary = Number(inputs.salary) || 0;
       const spend = Number(inputs.consumption) || 0;
       
-      // Rough estimate of direct taxes (15%) and indirect/consumption taxes (~35%)
-      const direct = salary * 0.15; // INSS+IRPF rough avg
-      const indirect = spend * 0.35; // ICMS, IPI, PIS/COFINS rough avg
+      const direct = salary * 0.15; 
+      const indirect = spend * 0.35; 
       
       const totalTaxes = direct + indirect;
       const burden = salary > 0 ? (totalTaxes / salary) * 100 : 0;
@@ -163,7 +161,7 @@ export const taxesCalculators: CalculatorConfig[] = [
       ]},
     ],
     calculate: (inputs) => {
-      const baseInss = 1412 * 0.05; // 5% of minimum wage
+      const baseInss = 1412 * 0.05; 
       let total = baseInss;
       if (inputs.type === 'commerce') total += 1;
       if (inputs.type === 'services') total += 5;
@@ -204,7 +202,7 @@ export const taxesCalculators: CalculatorConfig[] = [
         else if (rbt12 <= 360000) { rate = 0.073; deduct = 5940; }
         else if (rbt12 <= 720000) { rate = 0.095; deduct = 13860; }
         else { rate = 0.107; deduct = 22500; }
-      } else { // anexo3
+      } else {
         if (rbt12 <= 180000) { rate = 0.06; deduct = 0; }
         else if (rbt12 <= 360000) { rate = 0.112; deduct = 9360; }
         else if (rbt12 <= 720000) { rate = 0.135; deduct = 17640; }

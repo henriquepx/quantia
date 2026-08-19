@@ -96,8 +96,6 @@ export const creditCardsCalculators: CalculatorConfig[] = [
       const r = (Number(inputs.investmentRate) || 0) / 100;
       
       const pmt = installmentPrice / n;
-      // PV of installments discounted at user's investment rate
-      // Since first payment is often upfront or in 30 days, assume 30 days for standard.
       let pvInstallments = 0;
       for (let i=1; i<=n; i++) {
         pvInstallments += pmt / Math.pow(1 + r, i);
@@ -190,7 +188,6 @@ export const creditCardsCalculators: CalculatorConfig[] = [
       const rate = (Number(inputs.rate) || 0) / 100;
       const fee = Number(inputs.annualFee) || 0;
       
-      // Rough approximation of keeping a static balance for a year
       const annualRate = Math.pow(1 + rate, 12) - 1;
       const annualInterest = bal * annualRate;
       

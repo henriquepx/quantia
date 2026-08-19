@@ -24,12 +24,10 @@ export const realEstateCalculators: CalculatorConfig[] = [
       const years = Number(inputs.years) || 0;
       const months = years * 12;
       
-      // Buy cost
       const loan = pv - down;
       const monthlyMortgage = pmt(rate/12, months, loan);
       const totalBuyPaid = down + (monthlyMortgage * months);
       
-      // Rent cost (assuming no rent increase for simplicity, though real model would have it)
       const totalRentPaid = rent * months;
       
       return [

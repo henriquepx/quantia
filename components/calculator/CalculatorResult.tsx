@@ -1,20 +1,22 @@
 import { CalculatorResult as ResultType } from "@/lib/calculators/types";
 import { formatCurrency, formatPercent, formatNumber } from "@/lib/calculators/utils";
 import { Card } from "@/components/ui/card";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 interface Props {
   result: ResultType;
 }
 
 export function CalculatorResult({ result }: Props) {
+  const { language } = useLanguage();
   let displayValue = String(result.value);
   
   if (result.type === 'currency') {
-    displayValue = formatCurrency(result.value);
+    displayValue = formatCurrency(result.value, language === "pt" ? "pt-BR" : "en-US");
   } else if (result.type === 'percent') {
-    displayValue = formatPercent(result.value);
+    displayValue = formatPercent(result.value, 2, language === "pt" ? "pt-BR" : "en-US");
   } else if (result.type === 'number') {
-    displayValue = formatNumber(result.value);
+    displayValue = formatNumber(result.value, 2, language === "pt" ? "pt-BR" : "en-US");
   }
 
   if (result.highlight) {

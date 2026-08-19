@@ -103,7 +103,7 @@ export const investmentsCalculators: CalculatorConfig[] = [
       if (days > 720) taxRate = 0.15;
       
       const netProfit = profit * (1 - taxRate);
-      const b3Fee = 0.002 * p * y; // B3 fee 0.2% a.a roughly
+      const b3Fee = 0.002 * p * y;
       const netFinal = p + netProfit - b3Fee;
       
       return [
@@ -135,7 +135,7 @@ export const investmentsCalculators: CalculatorConfig[] = [
       const d = Number(inputs.days) || 0;
       
       const annualRate = cdi * rateCdi;
-      const dailyRate = Math.pow(1 + annualRate, 1/252) - 1; // standard financial days
+      const dailyRate = Math.pow(1 + annualRate, 1/252) - 1; 
       const workingDays = Math.floor(d * (252/365));
       const grossFinal = p * Math.pow(1 + dailyRate, workingDays);
       const profit = grossFinal - p;

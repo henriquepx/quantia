@@ -64,9 +64,8 @@ export const salaryCalculators: CalculatorConfig[] = [
       const gross13 = (salary / 12) * months;
       const firstInstallment = gross13 / 2;
       
-      // Rough INSS/IRPF on second installment
-      const inss = gross13 * 0.10; // rough est
-      const ir = gross13 > 2259 ? gross13 * 0.075 : 0; // rough est
+      const inss = gross13 * 0.10; 
+      const ir = gross13 > 2259 ? gross13 * 0.075 : 0; 
       const secondInstallment = gross13 - firstInstallment - inss - ir;
       
       return [
@@ -104,7 +103,6 @@ export const salaryCalculators: CalculatorConfig[] = [
       const grossVacation = takenDaysValue + oneThirdTaken;
       const grossSold = soldDaysValue + oneThirdSold;
       
-      // Rough deductions only on taken vacation
       const inss = grossVacation * 0.1;
       const ir = grossVacation * 0.075;
       
@@ -133,10 +131,9 @@ export const salaryCalculators: CalculatorConfig[] = [
       const salary = Number(inputs.salary) || 0;
       const hw = Number(inputs.hoursWeek) || 44;
       
-      // standard clt divisor
       const divisor = (hw / 6) * 30; 
       const hourly = salary / divisor;
-      const daily = hourly * (hw / 5); // assuming 5 work days for daily display
+      const daily = hourly * (hw / 5);
       
       return [
         { label: 'Hourly Rate', value: hourly, type: 'currency', highlight: true },
@@ -171,7 +168,6 @@ export const salaryCalculators: CalculatorConfig[] = [
       const val50 = hourly * 1.5 * ot50;
       const val100 = hourly * 2.0 * ot100;
       
-      // DSR (Weekly Paid Rest) impact roughly 1/6
       const dsr = (val50 + val100) / 6;
       
       return [
@@ -199,7 +195,6 @@ export const salaryCalculators: CalculatorConfig[] = [
       const salary = Number(inputs.salary) || 0;
       const months = Number(inputs.months) || 0;
       
-      // 8% per month, roughly 3% yield per year ignore for basic math
       const monthlyDeposit = salary * 0.08;
       const estimatedBalance = monthlyDeposit * months;
       
@@ -233,13 +228,12 @@ export const salaryCalculators: CalculatorConfig[] = [
       const benefits = Number(inputs.vr) || 0;
       const isSimples = inputs.simples === 'yes';
       
-      // Provisoes (Vacation, 13th, FGTS fine provision)
-      const provisions = salary * 0.33; // 11% vac, 8% 13th, 8% fgts, fine provision
+     
+      const provisions = salary * 0.33; 
       
-      // Encargos
       let encargo = 0;
       if (!isSimples) {
-        encargo = salary * 0.278; // 20% INSS + RAT + Third parties
+        encargo = salary * 0.278; 
       }
       
       const totalCost = salary + benefits + provisions + encargo;

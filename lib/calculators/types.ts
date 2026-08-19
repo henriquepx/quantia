@@ -17,7 +17,7 @@ export interface CalculatorResult {
   label: string;
   value: number | string;
   type: 'currency' | 'percent' | 'number' | 'text' | 'date';
-  highlight?: boolean; // primary result
+  highlight?: boolean; 
   color?: 'default' | 'success' | 'warning' | 'danger';
 }
 
@@ -32,10 +32,10 @@ export interface CalculatorConfig {
   title: string;
   description: string;
   category: CalculatorCategory;
-  icon: IconName; // lucide icon name
+  icon: IconName; 
   fields: CalculatorField[];
   calculate: (inputs: Record<string, any>) => CalculatorResult[];
-  formula?: string; // LaTeX-style or plain text
+  formula?: string; 
   explanation: string;
   stepByStep?: (inputs: Record<string, any>, results: CalculatorResult[]) => CalculatorStep[];
   example?: {
@@ -43,7 +43,7 @@ export interface CalculatorConfig {
     description: string;
   };
   notes?: string[];
-  relatedTools?: string[]; // slugs
+  relatedTools?: string[];
   faq?: { question: string; answer: string }[];
 }
 
